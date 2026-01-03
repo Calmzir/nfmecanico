@@ -13,19 +13,19 @@ import Footer from './components/Footer.vue'
   <Header />
   <main>
     <Hero />
-    <div v-scroll-reveal>
+    <div>
       <WhyHireMe />
     </div>
-    <div v-scroll-reveal>
+    <div>
       <Services />
     </div>
-    <div v-scroll-reveal>
+    <div>
       <Reviews />
     </div>
-    <div v-scroll-reveal>
+    <div>
       <ServiceArea />
     </div>
-    <div v-scroll-reveal>
+    <div>
       <Contact />
     </div>
   </main>

@@ -14,8 +14,8 @@ onMounted(() => {
         boxZoom: false
     }).setView([-34.173, -70.696], 12); // Zoom out slightly to fit larger area
 
-    // CartoDB Dark Matter Tiles
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    // CartoDB Light (Positron) Tiles for Contrast
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 20
@@ -25,14 +25,14 @@ onMounted(() => {
     L.circle([-34.173, -70.696], {
         color: '#991818',
         fillColor: '#991818',
-        fillOpacity: 0.3,
+        fillOpacity: 0.2, /* Slightly more transparent on light map */
         radius: 7500 // Increased to cover all Rancagua
     }).addTo(map);
 });
 </script>
 
 <template>
-  <section id="cobertura" class="section-padding">
+  <section id="cobertura" class="section-padding service-area">
     <div class="container">
       <div class="service-area-grid">
         <!-- Left Content -->
@@ -54,6 +54,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.service-area {
+    background-color: #1a1a1a; /* Dark Background matching Contact */
+    color: #ffffff;
+    /* Remove bottom padding to merge visually if needed, but section-padding handles spacing */
+    border-bottom: 1px solid rgba(255,255,255,0.05); /* Subtle separator or remove nicely */
+}
+
 .service-area-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -68,6 +75,7 @@ onMounted(() => {
 .area-text h2 {
     text-align: left;
     margin-bottom: 20px;
+    color: #ffffff;
 }
 
 .area-text h3 {
@@ -79,7 +87,7 @@ onMounted(() => {
 
 .area-text .extra-info {
     font-size: 1.2rem;
-    color: var(--text-color);
+    color: #cccccc;
 }
 
 .divider {
@@ -97,8 +105,9 @@ onMounted(() => {
     height: 400px;
     width: 100%;
     border-radius: 16px;
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    /* Clean light border for contrast against dark bg */
+    border: 4px solid rgba(255,255,255,0.1); 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     z-index: 1;
 }
 

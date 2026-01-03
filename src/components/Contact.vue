@@ -77,13 +77,16 @@ const submitForm = () => {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
     margin-top: 50px;
+    align-items: stretch; /* Ensure both columns stretch to same height */
 }
 
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    justify-content: center;
+    /* justify-content: space-between; Distribute items to match form height */
+    justify-content: space-between; 
+    height: 100%; 
+    gap: 15px; /* Reduced gap as space-between handles it, but kept for mobile safety */
 }
 
 .contact-item {
@@ -91,9 +94,11 @@ const submitForm = () => {
     align-items: center;
     font-size: 1.2rem;
     background: rgba(255, 255, 255, 0.05);
-    padding: 15px;
+    padding: 20px; /* Increased padding for better vertical fill */
     border-radius: 10px;
     transition: var(--transition);
+    flex: 1; /* Allow items to grow slightly to fill space if needed */
+    margin-bottom: 0; /* Remove potential margin since we use space-between/gap */
 }
 
 .contact-item:hover {
@@ -111,6 +116,7 @@ const submitForm = () => {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 100%; /* Ensure form takes full height of grid cell */
 }
 
 input, textarea {
@@ -122,6 +128,13 @@ input, textarea {
     font-family: inherit;
     font-size: 1rem;
     transition: var(--transition);
+    width: 100%; /* Ensure full width */
+}
+
+textarea {
+    resize: vertical; /* Only allow vertical resize */
+    min-height: 150px; /* Minimum useful height */
+    max-height: 300px; /* Prevent breaking layout too much */
 }
 
 input:focus, textarea:focus {

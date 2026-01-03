@@ -6,7 +6,7 @@ import BrandLogo from './BrandLogo.vue';
   <footer>
     <div class="container footer-content">
       <div class="logo">
-        <img src="/images/logo-full.png" alt="Neiro Fereira Mecánico" style="height: 40px; width: auto; margin-right: 10px;" />
+        <img src="/logo-footer.png" alt="Neiro Fereira Mecánico" style="height: 90px; width: auto; margin-right: 10px;" />
       </div>
       <div class="copyright">
         &copy; 2024 Neiro Fereira. Todos los derechos reservados.
@@ -22,7 +22,7 @@ import BrandLogo from './BrandLogo.vue';
 <style scoped>
 footer {
     background: #0a0a0a;
-    padding: 40px 0;
+    padding: 20px 0;
     border-top: 1px solid #333;
     color: var(--text-muted);
 }
