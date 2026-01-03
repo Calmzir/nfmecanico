@@ -1,9 +1,14 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, reactive, watch, nextTick } from 'vue';
 import HeaderLogo from './HeaderLogo.vue';
 
 const isMobileMenuOpen = ref(false);
 const activeSection = ref('');
+const indicatorStyle = reactive({
+    left: '0px',
+    width: '0px',
+    opacity: 0
+});
 
 const toggleMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
@@ -13,16 +18,27 @@ const closeMenu = () => {
     isMobileMenuOpen.value = false;
 };
 
+const updateIndicator = () => {
+    const activeLink = document.querySelector('nav a.active');
+    if (activeLink) {
+        const navRect = document.querySelector('.nav-links').getBoundingClientRect();
+        const linkRect = activeLink.getBoundingClientRect();
+        
+        // Calculate position relative to the ul container
+        indicatorStyle.left = `${linkRect.left - navRect.left}px`;
+        indicatorStyle.width = `${linkRect.width}px`;
+        indicatorStyle.opacity = 1;
+    } else {
+        indicatorStyle.opacity = 0;
+    }
+};
+
 // Scroll Spy Logic
 let observer = null;
 
 onMounted(() => {
     const sections = document.querySelectorAll('section');
     
-    // "Protagonist" logic:
-    // Trigger when element crosses the line at 20% from top of viewport.
-    // Leave when it goes above that line or falls below it.
-    // rootMargin: '-20% 0px -60% 0px' creates a "detection zone" from 20% down to 40% down.
     const options = {
         root: null,
         rootMargin: '-20% 0px -60% 0px', 
@@ -40,12 +56,22 @@ onMounted(() => {
     sections.forEach(section => {
         observer.observe(section);
     });
+
+    // Initial update
+    window.addEventListener('resize', updateIndicator);
+    nextTick(updateIndicator);
 });
 
 onUnmounted(() => {
     if (observer) {
         observer.disconnect();
     }
+    window.removeEventListener('resize', updateIndicator);
+});
+
+// Watch for section changes to move the line
+watch(activeSection, () => {
+    nextTick(updateIndicator);
 });
 </script>
 
@@ -66,6 +92,7 @@ onUnmounted(() => {
           <li><a href="#reseñas" :class="{ active: activeSection === 'reseñas' }" @click="closeMenu">Reseñas</a></li>
           <li><a href="#cobertura" :class="{ active: activeSection === 'cobertura' }" @click="closeMenu">Cobertura</a></li>
           <li><a href="#contacto" :class="{ active: activeSection === 'contacto' }" @click="closeMenu">Contacto</a></li>
+          <div class="nav-indicator" :style="indicatorStyle"></div>
         </ul>
       </nav>
     </div>
@@ -108,31 +135,33 @@ header .container {
 nav ul {
     display: flex;
     gap: 30px;
+    position: relative; /* Context for indicator */
 }
 
 nav a {
     font-weight: 500;
     font-size: 1rem;
-    position: relative; /* For underline positioning */
+    position: relative;
     padding-bottom: 5px;
     color: var(--text-color);
     transition: color 0.3s ease;
 }
 
-/* Active State Styles */
+/* Active State Styles - Color Only */
 nav a.active {
     color: var(--primary-color);
 }
 
-nav a.active::after {
-    content: '';
+/* Sliding Indicator */
+.nav-indicator {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
     height: 3px;
     background-color: var(--primary-color);
     border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: none;
 }
 
 nav a:hover {

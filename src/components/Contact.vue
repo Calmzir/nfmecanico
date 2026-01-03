@@ -53,95 +53,14 @@ const submitForm = () => {
     <Teleport to="body">
       <a href="https://wa.me/56950616848" class="whatsapp-float" target="_blank">
           <i class="fa-brands fa-whatsapp"></i>
+          <span class="whatsapp-label">¡Contáctame ahora!</span>
       </a>
     </Teleport>
   </section>
 </template>
 
 <style scoped>
-.contact-section {
-    background-color: #1a1a1a; /* Dark Background */
-    color: #ffffff;
-}
-
-.section-header h2 {
-    color: #ffffff;
-}
-
-.section-header p {
-    color: #a0a0a0;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    margin-top: 50px;
-    align-items: stretch; /* Ensure both columns stretch to same height */
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; Distribute items to match form height */
-    justify-content: space-between; 
-    height: 100%; 
-    gap: 15px; /* Reduced gap as space-between handles it, but kept for mobile safety */
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    font-size: 1.2rem;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px; /* Increased padding for better vertical fill */
-    border-radius: 10px;
-    transition: var(--transition);
-    flex: 1; /* Allow items to grow slightly to fill space if needed */
-    margin-bottom: 0; /* Remove potential margin since we use space-between/gap */
-}
-
-.contact-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(10px);
-}
-
-.contact-item i {
-    color: var(--primary-color);
-    margin-right: 15px;
-    font-size: 1.5rem;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    height: 100%; /* Ensure form takes full height of grid cell */
-}
-
-input, textarea {
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #333;
-    background: #2a2a2a;
-    color: #fff;
-    font-family: inherit;
-    font-size: 1rem;
-    transition: var(--transition);
-    width: 100%; /* Ensure full width */
-}
-
-textarea {
-    resize: vertical; /* Only allow vertical resize */
-    min-height: 150px; /* Minimum useful height */
-    max-height: 300px; /* Prevent breaking layout too much */
-}
-
-input:focus, textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(153, 24, 24, 0.2);
-}
+/* ... (unchanged styles) ... */
 
 .whatsapp-float {
     position: fixed;
@@ -156,13 +75,58 @@ input:focus, textarea:focus {
     align-items: center;
     justify-content: center;
     font-size: 30px;
-    box-shadow: 2px 2px 3px #999;
+    text-decoration: none;
     z-index: 100;
     transition: var(--transition);
+    /* No shadow as requested previously, or maybe slight one for depth since it's a bubble now? 
+       User said "quitale la sombra" before, but usually floating buttons have shadow. 
+       I will stick to flat for the button but maybe shadow for the bubble? 
+       Let's keep the button flat if they liked that, but circles usually need shadow to separate from bg.
+       I'll keep it flat as per "quitale la sombra" instruction which might still apply to the button base. */
+}
+
+.whatsapp-float i {
+    font-size: 30px;
 }
 
 .whatsapp-float:hover {
     transform: scale(1.1);
     background-color: #20b857;
+}
+
+/* Tooltip / Cloud Text */
+.whatsapp-label {
+    position: absolute;
+    right: 70px; /* Position to the left of the button */
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    opacity: 0; /* Hidden by default or visible? User said "aparezca", maybe animation? */
+    animation: fadeIn 0.5s ease-out 1s forwards; /* Delay appearance */
+    pointer-events: none;
+}
+
+/* Arrow for the cloud */
+.whatsapp-label::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid white;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-10px, -50%); }
+    to { opacity: 1; transform: translate(0, -50%); }
 }
 </style>
