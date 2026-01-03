@@ -11,6 +11,9 @@ const slides = [
     desc: "Servicio experto donde lo necesites. Sin filas ni esperas.",
     image: "https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
     cta: "Agendar Visita",
+    image: "https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    ariaLabel: "Mecánico reparando un motor de automóvil en detalle",
+    cta: "Agendar Visita",
     link: "#contacto"
   },
   {
@@ -19,6 +22,9 @@ const slides = [
     desc: "Diagnósticos honestos y presupuestos claros. Solo reparamos lo que tu auto realmente necesita.",
     image: "https://images.unsplash.com/photo-1625047509168-a7026f36de04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", // Mechanic explaining transparently
     cta: "Ver Testimonios",
+    image: "https://images.unsplash.com/photo-1625047509168-a7026f36de04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", // Mechanic explaining transparently
+    ariaLabel: "Mecánico explicando pacientemente el diagnóstico a un cliente",
+    cta: "Ver Testimonios",
     link: "#reseñas"
   },
   {
@@ -26,6 +32,8 @@ const slides = [
     title: "Especialista Chevrolet y Volkswagen",
     desc: "Certificado en marcas líderes para un mantenimiento garantizado.",
     image: "https://images.unsplash.com/photo-1626668893632-6f3a4466d22f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", // VW Golf R
+    image: "https://images.unsplash.com/photo-1626668893632-6f3a4466d22f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", // VW Golf R
+    ariaLabel: "Primer plano de un vehículo Volkswagen moderno",
     // cta and link removed from data objects as they are now global
   }
 ];
@@ -68,7 +76,7 @@ onUnmounted(() => {
         @click="setActive(index)"
       >
         <!-- Background Wrapper to counteract skew -->
-        <div class="slide-bg" :style="{ backgroundImage: `url(${slide.image})` }"></div>
+        <div class="slide-bg" role="img" :aria-label="slide.ariaLabel" :style="{ backgroundImage: `url(${slide.image})` }"></div>
         <div class="overlay"></div>
         
         <!-- Vertical Border -->

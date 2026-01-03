@@ -11,7 +11,7 @@
           <div class="icon-box">
             <i class="fa-solid fa-certificate"></i>
           </div>
-          <h4>Certificaciones</h4>
+          <h3>Certificaciones</h3>
           <p>Mecánico certificado en Chevrolet y Volkswagen. Tu vehículo en manos de un experto calificado.</p>
         </div>
 
@@ -19,7 +19,7 @@
           <div class="icon-box">
             <i class="fa-solid fa-house-chimney-user"></i>
           </div>
-          <h4>Servicio a Domicilio</h4>
+          <h3>Servicio a Domicilio</h3>
           <p>Comodidad absoluta. Voy a tu casa u oficina para realizar diagnósticos y mantenimientos.</p>
         </div>
 
@@ -27,7 +27,7 @@
           <div class="icon-box">
             <i class="fa-solid fa-handshake-simple"></i>
           </div>
-          <h4>Confianza y Transparencia</h4>
+          <h3>Confianza y Transparencia</h3>
           <p>Diagnósticos honestos, precios claros y sin sorpresas. Te explico cada detalle del trabajo.</p>
         </div>
 
@@ -35,7 +35,7 @@
           <div class="icon-box">
             <i class="fa-solid fa-screwdriver-wrench"></i>
           </div>
-          <h4>Servicio a la Medida</h4>
+          <h3>Servicio a la Medida</h3>
           <p>Soluciones personalizadas para las necesidades específicas de tu auto y presupuesto.</p>
         </div>
 
@@ -43,7 +43,7 @@
           <div class="icon-box">
             <i class="fa-solid fa-clock-rotate-left"></i>
           </div>
-          <h4>Años de Experiencia</h4>
+          <h3>Años de Experiencia</h3>
           <p>Trayectoria comprobada resolviendo todo tipo de fallas mecánicas con eficiencia.</p>
         </div>
       </div>
@@ -112,7 +112,7 @@
   transform: rotateY(180deg); /* Little playful interaction */
 }
 
-h4 {
+h3 {
   font-size: 1.25rem;
   margin-bottom: 12px;
   font-weight: 700;

@@ -1,10 +1,11 @@
 <template>
   <section id="servicios" class="services-section">
+    <h2 class="sr-only">Nuestros Servicios</h2>
     <div class="services-container">
       
       <!-- Service 1: Mantención General -->
       <div class="service-panel">
-        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="bg-image" role="img" aria-label="Mecánico realizando mantención general al motor" style="background-image: url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
         <div class="overlay"></div>
         <div class="vertical-border"></div>
         
@@ -17,7 +18,7 @@
 
       <!-- Service 2: Revisión y Diagnóstico -->
       <div class="service-panel">
-        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1551522435-a13afa10f103?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="bg-image" role="img" aria-label="Diagnóstico computarizado de automóvil" style="background-image: url('https://images.unsplash.com/photo-1551522435-a13afa10f103?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
         <div class="overlay"></div>
         <div class="vertical-border"></div>
 
@@ -30,7 +31,7 @@
 
       <!-- Service 3: Cambio de Embrague -->
       <div class="service-panel">
-        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="bg-image" role="img" aria-label="Reparación de sistema de embrague" style="background-image: url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
         <div class="overlay"></div>
         <div class="vertical-border"></div>
         
@@ -43,7 +44,7 @@
 
       <!-- Service 4: Cambio de Distribución -->
       <div class="service-panel">
-        <div class="bg-image" style="background-image: url('/service-distribucion.png');"></div>
+        <div class="bg-image" role="img" aria-label="Cambio de kit de distribución" style="background-image: url('/service-distribucion.png');"></div>
         <div class="overlay"></div>
         <div class="vertical-border"></div>
         
@@ -56,7 +57,7 @@
 
       <!-- Service 5: Tren Delantero y Frenos -->
       <div class="service-panel">
-        <div class="bg-image" style="background-image: url('/service-frenos.png');"></div>
+        <div class="bg-image" role="img" aria-label="Revisión de frenos delanteros" style="background-image: url('/service-frenos.png');"></div>
         <div class="overlay"></div>
         
         <div class="content">
@@ -118,6 +119,18 @@
 .service-panel:hover .bg-image {
     filter: grayscale(0%) brightness(1); /* Full color and brightness on hover */
     transform: scale(1.1);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .overlay {

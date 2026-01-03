@@ -7,9 +7,42 @@ const form = ref({
   message: ''
 });
 
-const submitForm = () => {
-  const mailtoLink = `mailto:fereira.neiro@gmail.com?subject=Consulta Landing Page - ${form.value.name}&body=${form.value.message}%0D%0A%0D%0ADe: ${form.value.name} (${form.value.email})`;
-  window.location.href = mailtoLink;
+const status = ref({
+    submitting: false,
+    succeeded: false,
+    error: null
+});
+
+const submitForm = async () => {
+  status.value.submitting = true;
+  status.value.error = null;
+
+  try {
+      const response = await fetch("https://formspree.io/f/mlgdpdzk", {
+          method: "POST",
+          body: JSON.stringify(form.value),
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          }
+      });
+
+      if (response.ok) {
+          status.value.succeeded = true;
+          form.value = { name: '', email: '', message: '' }; // Reset form
+      } else {
+          const data = await response.json();
+          if (Object.hasOwn(data, 'errors')) {
+              status.value.error = data.errors.map(error => error["message"]).join(", ");
+          } else {
+              status.value.error = "Hubo un problema al enviar el formulario. Intenta nuevamente.";
+          }
+      }
+  } catch (err) {
+      status.value.error = "Error de conexión. Por favor verifica tu internet.";
+  } finally {
+      status.value.submitting = false;
+  }
 };
 </script>
 
@@ -42,10 +75,16 @@ const submitForm = () => {
         </div>
 
         <form @submit.prevent="submitForm" class="contact-form">
-          <input type="text" v-model="form.name" placeholder="Tu Nombre" required />
-          <input type="email" v-model="form.email" placeholder="Tu Email" required />
-          <textarea v-model="form.message" placeholder="¿En qué puedo ayudarte?" rows="5" required></textarea>
-          <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+          <input type="text" name="name" v-model="form.name" placeholder="Tu Nombre" required :disabled="status.submitting" />
+          <input type="email" name="email" v-model="form.email" placeholder="Tu Email" required :disabled="status.submitting" />
+          <textarea name="message" v-model="form.message" placeholder="¿En qué puedo ayudarte?" rows="5" required :disabled="status.submitting"></textarea>
+          
+          <button type="submit" class="btn btn-primary" :disabled="status.submitting">
+              {{ status.submitting ? 'Enviando...' : 'Enviar Mensaje' }}
+          </button>
+
+          <p v-if="status.succeeded" class="success-msg">¡Mensaje enviado! Te contactaré pronto.</p>
+          <p v-if="status.error" class="error-msg">{{ status.error }}</p>
         </form>
       </div>
     </div>
@@ -227,5 +266,19 @@ input:focus, textarea:focus {
     .whatsapp-label {
         display: none;
     }
+}
+
+.success-msg {
+    color: #4ade80; /* Green */
+    margin-top: 10px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.error-msg {
+    color: #ef4444; /* Red */
+    margin-top: 10px;
+    font-weight: 500;
+    text-align: center;
 }
 </style>
