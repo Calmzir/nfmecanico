@@ -109,7 +109,7 @@ onUnmounted(() => {
             ></span>
         </div>
 
-        <a href="#contacto" class="btn btn-primary global-cta">
+        <a href="https://wa.me/56950616848?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20tus%20servicios" class="btn btn-primary global-cta" target="_blank">
             <span class="desktop-text">Agenda tu visita ahora</span>
             <span class="mobile-text">Agendar Visita</span>
         </a>

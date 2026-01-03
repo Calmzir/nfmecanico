@@ -90,7 +90,7 @@ const submitForm = async () => {
     </div>
     
     <Teleport to="body">
-      <a href="https://wa.me/56950616848" class="whatsapp-float" target="_blank">
+      <a href="https://wa.me/56950616848?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20tus%20servicios" class="whatsapp-float" target="_blank">
           <i class="fa-brands fa-whatsapp"></i>
           <span class="whatsapp-label">¡Contáctame ahora!</span>
       </a>

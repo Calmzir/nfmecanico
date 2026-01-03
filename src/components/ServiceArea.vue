@@ -41,7 +41,7 @@ onMounted(() => {
           <div class="divider"></div>
           <h3>Ofrecemos servicios en Rancagua, Machalí y sus alrededores</h3>
           <p class="extra-info">Contáctenos para otras localidades.</p>
-          <a href="#contacto" class="btn btn-primary mt-4">Consultar Disponibilidad</a>
+          <a href="https://wa.me/56950616848?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20tus%20servicios" class="btn btn-primary mt-4" target="_blank">Consultar Disponibilidad</a>
         </div>
 
         <!-- Right Map -->
