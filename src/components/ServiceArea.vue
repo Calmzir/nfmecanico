@@ -12,7 +12,7 @@ onMounted(() => {
         zoomControl: false, // Fully static as requested "fijo"
         doubleClickZoom: false,
         boxZoom: false
-    }).setView([-34.173, -70.696], 12); // Zoom out slightly to fit larger area
+    }).setView([-34.173, -70.696], window.innerWidth < 768 ? 11 : 12); // Tweaked to 11 per user request
 
     // CartoDB Light (Positron) Tiles for Contrast
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {

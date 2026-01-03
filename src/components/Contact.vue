@@ -60,7 +60,88 @@ const submitForm = () => {
 </template>
 
 <style scoped>
-/* ... (unchanged styles) ... */
+.contact-section {
+    background-color: #1a1a1a; /* Dark Background */
+    color: #ffffff;
+}
+
+.section-header h2 {
+    color: #ffffff;
+}
+
+.section-header p {
+    color: #a0a0a0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Applied the responsive fix here too */
+    gap: 40px;
+    margin-top: 50px;
+    align-items: stretch;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%; 
+    gap: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    transition: var(--transition);
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+}
+
+.contact-item i {
+    color: var(--primary-color);
+    margin-right: 15px;
+    font-size: 1.5rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+input, textarea {
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #2a2a2a;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+    width: 100%;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 150px;
+    max-height: 300px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(153, 24, 24, 0.2);
+}
 
 .whatsapp-float {
     position: fixed;
@@ -128,5 +209,23 @@ const submitForm = () => {
 @keyframes fadeIn {
     from { opacity: 0; transform: translate(-10px, -50%); }
     to { opacity: 1; transform: translate(0, -50%); }
+}
+
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 24px;
+    }
+
+    .whatsapp-float i {
+        font-size: 24px;
+    }
+
+    .whatsapp-label {
+        display: none;
+    }
 }
 </style>

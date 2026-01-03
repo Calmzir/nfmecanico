@@ -11,7 +11,7 @@ import BrandLogo from './BrandLogo.vue';
       <div class="copyright">
         &copy; 2024 Neiro Fereira. Todos los derechos reservados.
       </div>
-      <div class="socials" style="font-size: 1.5rem; display: flex; gap: 15px;">
+      <div class="socials" style="font-size: 1.5rem; display: none; gap: 15px;">
         <a href="#"><i class="fa-brands fa-facebook"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
       </div>

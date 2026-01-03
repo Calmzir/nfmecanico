@@ -101,7 +101,10 @@ onUnmounted(() => {
             ></span>
         </div>
 
-        <a href="#contacto" class="btn btn-primary global-cta">Agenda tu visita ahora</a>
+        <a href="#contacto" class="btn btn-primary global-cta">
+            <span class="desktop-text">Agenda tu visita ahora</span>
+            <span class="mobile-text">Agendar Visita</span>
+        </a>
         
         <div class="scroll-indicator">
             <i class="fa-solid fa-chevron-down"></i>
@@ -111,6 +114,37 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+/* ... existing styles ... */
+/* Add these rules at the end of the file or merge with existing media query */
+
+.desktop-text { display: inline; }
+.mobile-text { display: none; }
+
+/* ... */
+
+@media (max-width: 768px) {
+  /* ... existing mobile styles ... */
+  
+  .desktop-text { display: none; }
+  .mobile-text { display: inline; }
+  
+  .global-cta {
+      width: auto;
+      max-width: none;
+      position: absolute;
+      bottom: 20px; /* Align with WhatsApp bottom roughly */
+      left: 20px;   /* Opposite side of WhatsApp (Right) */
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      padding: 12px 20px;
+      z-index: 50; /* Ensure visibility */
+  }
+  
+  /* Ensure Hero UI doesn't force center alignment on this absolute element if needed */
+  .hero-overlay-ui {
+      align-items: center; /* Keep other items centered if any */
+  }
+}
 .hero-accordion {
   width: 100%;
   height: 90vh; 
@@ -344,7 +378,12 @@ onUnmounted(() => {
   .vertical-title {
     writing-mode: horizontal-tb;
     transform: rotate(0deg);
-    font-size: 1.2rem;
+    font-size: 1.0rem; /* Slightly smaller to fit better */
+    white-space: normal;
+    text-align: center;
+    width: 100%;
+    padding: 0 10px;
+    line-height: 1.2;
   }
 
   .active-content h1 {
@@ -355,17 +394,25 @@ onUnmounted(() => {
     font-size: 1rem;
   }
 
+  .active-content p {
+    font-size: 1rem;
+  }
+
   .vertical-border {
       display: none;
   }
   
+  .desktop-text { display: none; }
+  .mobile-text { display: inline; }
+
   .global-cta {
-      width: 90%;
-      text-align: center;
-      bottom: 20%;
-      margin-bottom: 40px;
-      font-size: 1rem;
-      padding: 15px 20px;
+      display: none;
+  }
+
+  .scroll-indicator {
+    display: none;
   }
 }
+
+
 </style>
