@@ -1,9 +1,12 @@
+<script setup>
+import BrandLogo from './BrandLogo.vue';
+</script>
+
 <template>
   <footer>
     <div class="container footer-content">
       <div class="logo">
-        <i class="fa-solid fa-screwdriver-wrench"></i>
-        NF<span>MECÁNICO</span>
+        <img src="/images/logo-full.png" alt="Neiro Fereira Mecánico" style="height: 40px; width: auto; margin-right: 10px;" />
       </div>
       <div class="copyright">
         &copy; 2024 Neiro Fereira. Todos los derechos reservados.

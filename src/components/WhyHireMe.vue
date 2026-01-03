@@ -1,5 +1,5 @@
 <template>
-  <section class="section-padding why-hire">
+  <section id="beneficios" class="section-padding why-hire">
     <div class="container">
       <div class="section-header text-center">
         <h2>¿Por qué contratarme?</h2>
@@ -37,7 +37,8 @@
 
 <style scoped>
 .why-hire {
-  background: linear-gradient(to bottom, #121212, #1a1a1a);
+  background-color: var(--white);
+  /* Removed dark gradient */
 }
 
 .reasons-grid {
@@ -55,7 +56,7 @@
 .icon-box {
   width: 80px;
   height: 80px;
-  background: rgba(255, 87, 34, 0.1);
+  background: rgba(153, 24, 24, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;

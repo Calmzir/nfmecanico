@@ -1,41 +1,30 @@
 <script setup>
 import { ref } from 'vue';
 
-const name = ref('');
-const email = ref('');
-const message = ref('');
-const btnText = ref('Enviar Mensaje');
-const isSending = ref(false);
+const form = ref({
+  name: '',
+  email: '',
+  message: ''
+});
 
-const handleSubmit = () => {
-  isSending.value = true;
-  btnText.value = 'Enviando...';
-
-  setTimeout(() => {
-    alert(`¡Gracias ${name.value}! Hemos recibido tu mensaje. Te contactaremos pronto a ${email.value}.`);
-    name.value = '';
-    email.value = '';
-    message.value = '';
-    btnText.value = 'Mensaje Enviado';
-    
-    setTimeout(() => {
-      btnText.value = 'Enviar Mensaje';
-      isSending.value = false;
-    }, 3000);
-  }, 1500);
+const submitForm = () => {
+  const mailtoLink = `mailto:fereira.neiro@gmail.com?subject=Consulta Landing Page - ${form.value.name}&body=${form.value.message}%0D%0A%0D%0ADe: ${form.value.name} (${form.value.email})`;
+  window.location.href = mailtoLink;
 };
 </script>
 
 <template>
-  <section id="contacto" class="section-padding">
+  <section id="contacto" class="contact-section section-padding">
     <div class="container">
-      <div class="contact-container">
+      <div class="section-header text-center">
+        <h2>Contáctame</h2>
+        <p>¿Listo para programar tu visita?</p>
+      </div>
+
+      <div class="contact-grid">
         <div class="contact-info">
-          <h2>Contáctanos</h2>
-          <p style="margin-bottom: 30px;">Agenda tu visita técnica o reparacíon a domicilio hoy mismo.</p>
-          
-          <div class="contact-item">
-            <i class="fa-brands fa-whatsapp"></i>
+            <div class="contact-item">
+            <i class="fa-solid fa-phone"></i>
             <span>+56 9 5061 6848</span>
           </div>
           <div class="contact-item">
@@ -44,7 +33,7 @@ const handleSubmit = () => {
           </div>
           <div class="contact-item">
             <i class="fa-solid fa-location-dot"></i>
-            <span>Servicio a Domicilio (Cobertura en la Zona)</span>
+            <span>Rancagua, Chile</span>
           </div>
           <div class="contact-item">
             <i class="fa-solid fa-clock"></i>
@@ -52,119 +41,115 @@ const handleSubmit = () => {
           </div>
         </div>
 
-        <div class="contact-form">
-          <form @submit.prevent="handleSubmit">
-            <div class="form-group">
-              <input type="text" v-model="name" class="form-control" placeholder="Tu Nombre" required>
-            </div>
-            <div class="form-group">
-              <input type="email" v-model="email" class="form-control" placeholder="Tu Correo Electrónico" required>
-            </div>
-            <div class="form-group">
-              <textarea v-model="message" class="form-control" placeholder="¿Qué servicio necesitas?" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" :disabled="isSending" style="width: 100%;">{{ btnText }}</button>
-          </form>
-        </div>
+        <form @submit.prevent="submitForm" class="contact-form">
+          <input type="text" v-model="form.name" placeholder="Tu Nombre" required />
+          <input type="email" v-model="form.email" placeholder="Tu Email" required />
+          <textarea v-model="form.message" placeholder="¿En qué puedo ayudarte?" rows="5" required></textarea>
+          <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+        </form>
       </div>
     </div>
     
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/56950616848?text=Hola%20Neiro,%20necesito%20un%20servicio%20mecánico." class="whatsapp-float" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <Teleport to="body">
+      <a href="https://wa.me/56950616848" class="whatsapp-float" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </Teleport>
   </section>
 </template>
 
 <style scoped>
-.contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: start;
+.contact-section {
+    background-color: #1a1a1a; /* Dark Background */
+    color: #ffffff;
 }
 
-.contact-info h3 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+.section-header h2 {
+    color: #ffffff;
+}
+
+.section-header p {
+    color: #a0a0a0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
 }
 
 .contact-item i {
     color: var(--primary-color);
-    font-size: 1.2rem;
+    margin-right: 15px;
+    font-size: 1.5rem;
 }
 
 .contact-form {
-    background: var(--surface-color);
-    padding: 40px;
-    border-radius: 16px;
-    border: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-control {
-    width: 100%;
+input, textarea {
     padding: 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--glass-border);
     border-radius: 8px;
-    color: var(--white);
+    border: 1px solid #333;
+    background: #2a2a2a;
+    color: #fff;
     font-family: inherit;
     font-size: 1rem;
     transition: var(--transition);
 }
 
-.form-control:focus {
+input:focus, textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 2px rgba(153, 24, 24, 0.2);
 }
 
-textarea.form-control {
-    resize: none;
-    height: 150px;
-}
-
-/* WhatsApp Floating Button */
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: #25D366;
-    color: #FFF;
+    background-color: #25d366;
+    color: white;
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 3px #999;
-    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
     transition: var(--transition);
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
 }
 
 .whatsapp-float:hover {
     transform: scale(1.1);
-    background-color: #128C7E;
-}
-
-@media (max-width: 768px) {
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
+    background-color: #20b857;
 }
 </style>
